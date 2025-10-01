@@ -93,6 +93,18 @@ abline(v = mean(sesgo), col = "red", lwd = 2, lty = 2)
 abline(v = min(sesgo), col = "blue", lwd = 2, lty = 2)
 abline(v = max(sesgo), col = "blue", lwd = 2, lty = 2)
 
+# lwd y lty controlan el grosor y el tipo de línea respectivamente:
+# lwd (line width): controla el grosor de la línea.
+# lwd = 1 es el valor por defecto (línea delgada).
+# Si aumentas el número (ej. lwd = 2 o lwd = 3), la línea se dibuja más gruesa.
+# Valores menores que 1 dibujan líneas muy delgadas.
+# lty (line type): controla el estilo de la línea. Los valores más usados son:
+# lty = 1 → línea continua (default).
+# lty = 2 → línea discontinua (guiones).
+# lty = 3 → línea punteada.
+# lty = 4 → línea de guion y punto.
+# Se puede usar strings: "solid", "dashed", "dotted", "dotdash", etc.
+
 # CURTOSIS
 
 # La curtosis mide la "forma" o el grado de concentración de los datos 
