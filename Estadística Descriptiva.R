@@ -81,9 +81,9 @@ abline(v = median(simetrica), col = "blue", lwd = 2, lty = 2)
 # Sesgo positivo indica que la cola de la distribución 
 # se extiende hacia la derecha (valores más altos).
 hist(data$v18, main = "Costo del arriendo", xlab = "Costo en $", ylab= "Frecuencia")
-abline(v = mean(data$v18), col = "red", lwd = 2, lty = 2) 
-abline(v = min(data$v18), col = "blue", lwd = 2, lty = 2) 
-abline(v = max(data$v18), col = "blue", lwd = 2, lty = 2) 
+abline(v = mean(data$v18, na.rm = T), col = "red", lwd = 2, lty = 2) 
+abline(v = min(data$v18, na.rm = T), col = "blue", lwd = 2, lty = 2) 
+abline(v = max(data$v18, na.rm = T), col = "blue", lwd = 2, lty = 2) 
 
 # Sesgo negativo indica que la cola de la distribución 
 # se extiende hacia la izquierda (valores más bajos).
