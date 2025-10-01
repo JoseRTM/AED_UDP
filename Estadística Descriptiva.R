@@ -2,12 +2,12 @@
 # MEDIDAS DE TENDENCIA CENTRAL   
 
 # ACTIVAR LIBRERÍAS
-library(haven)
+library(rio)
 library(psych)
 library(skimr)
 
 # CARGAR DATOS
-data <- read_sav("casen_red.sav")
+data <- import("casen_red.sav")
 
 # VISTAZO
 str(data)
