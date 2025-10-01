@@ -17,6 +17,16 @@ head(unique(data$sexo))
 table(data$nse)
 table(data$sexo)
 
+# EN R se pueden anidar funciones, por ejemplo
+
+sqrt(log(100))
+# aqui estamos sacando la raiz del logaritmo de 100
+# esto es equivalente
+
+100 %>% log() %>% sqrt()
+
+# esto ayuda a entender mejor el código, lo ordena
+
 # PROPORCIONES
 prop.table(table(data$nse))
 table(data$sexo) %>% prop.table()
@@ -29,11 +39,6 @@ table(data$nse) %>% prop.table()*100
 # NOTA: tab1() proviene de la librería epiDisplay
 tab1(data$sexo)
 tab1(data$nse)
-
-# VERSIÓN DPLYR
-data %>% 
-  count(sexo) %>% 
-  mutate(porcentaje = n/sum(n)*100)
 
 # TABLAS DE CONTINGENCIA
 table(data$sexo,data$nse)
