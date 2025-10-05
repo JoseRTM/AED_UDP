@@ -63,23 +63,25 @@ plot(density(data2$P81, na.rm = T),  # Especificamos la variable numérica
 # 8. Compare a través de un gráfico la diferencia en la edad de inicio
 # entre quienes declaran haber consumido alcohol y las que no lo hicieron.
 # Discuta los resultados. 
-boxplot(P81 ~ P76_1,  # Fórmula: mpg es la variable dependiente y cyl es la variable categórica
+boxplot(P81 ~ P76_1,  
         data=data2,  # Especificamos el dataset
         main="Edad de inicio por Consumo de alcohol (Vida)",  # Título del gráfico
         xlab="Uso de alcohol",  # Etiqueta del eje X
         ylab="Edad en años",  # Etiqueta del eje Y
         col="orange")  # Color de los boxplots
+
 # No se observan diferencias en torno a la edad de inicio, se comportan
 # prácticamente igual entre quienes declararon consumir alcohol.
 
 # 9. Compare a través de un gráfico la diferencia en la edad de inicio por sexo
 # Discuta los resultados
-boxplot(P81 ~ SEXO,  # Fórmula: mpg es la variable dependiente y cyl es la variable categórica
+boxplot(P81 ~ SEXO,  
         data=data2,  # Especificamos el dataset
         main="Edad de inicio por Consumo de alcohol (Vida)",  # Título del gráfico
         xlab="Uso de alcohol",  # Etiqueta del eje X
         ylab="Edad en años",  # Etiqueta del eje Y
         col="orange")  # Color de los boxplots
+
 # 10. Compare a través un gráfico la frecuencia de consumo de alcohol por sexo
 # Discuta los resultados
 freq <- table(data2$SEXO, data2$P76_1)  
@@ -89,7 +91,7 @@ barplot(freq,
         xlab="Consumo de Alcohol",  # Etiqueta del eje X
         col=c("red", "black"),
         ylim = c(0,3200),# Colores de las barras para cada grupo
-        legend = rownames(freq))  # Leyenda para cada grupo de cilindros
+        legend = rownames(freq))  
 
 # 10. Compare a través un gráfico el porcentaje de consumo de alcohol por sexo
 # Discuta los resultados
@@ -103,4 +105,4 @@ barplot(freq2,
         xlab="Consumo de Alcohol",  # Etiqueta del eje X
         col=c("red", "black"),
         ylim = c(0,70),# Colores de las barras para cada grupo
-        legend = rownames(freq2))  # Leyenda para cada grupo de cilindros
+        legend = rownames(freq2)) 
