@@ -41,15 +41,23 @@ tab1(data$sexo)
 tab1(data$nse)
 
 # TABLAS DE CONTINGENCIA
-table(data$sexo,data$nse)
-table(data$sexo,data$nse) %>% prop.table(margin = 1)*100 # % por fila
+tabla_plana <- table(data$sexo,data$nse)
+tabla_fila <- table(data$sexo,data$nse) %>% prop.table(margin = 1)*100 # % por fila
 table(data$sexo,data$nse) %>% prop.table(margin = 2)*100 # % por columna
+# ESTO FUNCIONA
+(table(data$sexo, data$nse) %>% prop.table(margin = 1)*100) %>% round(1)
+# ESTO NO FUNCIONA
+tabla_round <- table(data$sexo, data$nse) %>% prop.table(margin = 1)*100 %>% round(1)
+tabla_round
+# se guarda redondeado, pero se imprime sin redondear.
+# esto ocurre porque primero se imprime en la consola y luego lo redondea.
+# si se aplican parentesis, se imprime correctamente 
 
 # VERSIÓN JANITOR
 # tabyl() PUEDE USARSE SI TENEMOS INSTALADO EL PAQUETE janitor
 data %>%
   tabyl(sexo, nse) %>%
   adorn_percentages("col") %>% # % por columna
-  adorn_totals("col") %>% # TOTALES POR COLUMNA
+  adorn_totals("row") %>% # TOTALES POR COLUMNA
   adorn_pct_formatting(digits = 1) # N DECIMALES
 
