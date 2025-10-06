@@ -17,11 +17,6 @@ plot(proporciones_acumuladas, type="l", col="blue", lwd=2,
 abline(h=0.5, col="red", lwd=2, lty=2) # Línea de referencia en 0.5
 legend("topright", legend=c("Proporción acumulada", "Valor esperado (0.5)"), col=c("blue", "red"), lty=c(1, 2), cex = 0.7)
 
-# Ahora explicamos la falacia del apostador
-# Ejemplo: contar las rachas de 10 lanzamientos consecutivos en las que aparece una serie de caras o sellos.
-rachas <- rle(lanzamientos)$lengths
-rachas_10_caras <- sum(rachas == 10 & rle(lanzamientos)$values == 1) # Contamos rachas de 10 caras consecutivas
-rachas_10_sellos <- sum(rachas == 10 & rle(lanzamientos)$values == 0) # Contamos rachas de 10 sellos consecutivos
 
 #Demostracion Teorema del limite central
 
@@ -138,10 +133,10 @@ for (i in 1:1000){
 }
 
 limites05 <- as.data.frame(limites05)
-limites05 <- ifelse(li<mean(apruebo)& ls>(mean(apruebo)), 1,0) # VAMOS A CREAR
+limites05$param <- ifelse(limites05$li<mean(apruebo)& limites05$ls>(mean(apruebo)), 1,0) # VAMOS A CREAR
 # UNA VARIABLE QUE TOME EL VALOR 1 CUANDO EL PARAMETRO(8%) ESTE DENTRO
 # DE LOS LIMITES DEL INTERVALO DE CONFIANZA.
-prop.table(table(limites05$param)) # VEMOS QUE EL 95% DE LAS VECES 
+prop.table(table(limites05$param)) # VEMOS QUE EL 94% DE LAS VECES 
 # EL INTERVALO DE CONFIANZA INCLUYE AL PARAMETRO.
 
 # EJERCICIO: REPRODUCIR ESTE CODIGO PARA LOS INTERVALOS DE CONFIANZA AL 90%
