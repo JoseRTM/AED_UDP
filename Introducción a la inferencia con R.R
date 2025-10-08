@@ -150,6 +150,7 @@ prop.table(table(limites05$param)) # VEMOS QUE EL 94% DE LAS VECES
 # LIBRERÍAS
 library(survey)
 library(haven)
+library(dplyr)
 
 # DATOS
 data <- rio::import("https://github.com/JoseRTM/AED_UDP/raw/refs/heads/main/jovenes.rds")
@@ -172,9 +173,8 @@ survey <- svydesign(id = ~CONGLOMERADO, strata = ~ESTRATO,
 
 # Calculemos la media del ingreso con y sin ponderación
 mean(data$P82, na.rm = T)
-# svymean no permite argumentos como na.rm = T
-survey_clean <- subset(survey, !is.na(P82))
-media_parejas <- svymean(~data_clean$P82, design = survey_clean)
+media_parejas <- svymean(~data$P82, design = survey, na.rm = T)
+media_parejas
 
 # INTERVALOS DE CONFIANZA
 confint(media_parejas)
