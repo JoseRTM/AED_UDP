@@ -171,7 +171,8 @@ survey <- svydesign(id = ~CONGLOMERADO, strata = ~ESTRATO,
 # ESTIMAR MEDIAS #
 ##################
 
-# Calculemos la media del ingreso con y sin ponderación
+# Calculemos el promedio de parejas sexuales en los últimos 12 meses, 
+# con y sin ponderación
 mean(data$P82, na.rm = T)
 media_parejas <- svymean(~data$P82, design = survey, na.rm = T)
 media_parejas
@@ -180,7 +181,6 @@ media_parejas
 confint(media_parejas)
 
 # PROPORCIONES
-
 table(data$SEXO) %>% prop.table()
 svytable(~data$SEXO, design = survey) %>% prop.table()
 props <- svymean(~factor(SEXO), design = survey)
