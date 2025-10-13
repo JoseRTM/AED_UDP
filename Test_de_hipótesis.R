@@ -55,6 +55,8 @@ svychisq(~var1 + var2, design = survey_design)
 #---------------------------#
 data <- import("https://github.com/JoseRTM/AED_UDP/raw/refs/heads/main/mineduc_paes.rds")
 View(data)
+data[, 2:8][data[, 2:8] == 0] <- NA
+data[,1][data[, 1] == 99] <- NA
 
 # ESTE COMANDO ME DA UN INTERVALO DE CONFIANZA PARA LA MEDIA
 t.test(data$PTJE_NEM, mu = 500)
@@ -68,7 +70,8 @@ svyttest(variable ~ 1, design = survey_design)
 #---------------------------#
 # H0: MU1 = MU2
 # H1: MU1 != MU2
-t.test(data$PTJE_NEM~data$SEXO)
+data$ddecil <- ifelse(data$INGRESO_PERCAPITA_GRUPO_FA == 10, 1, 0)
+t.test(data$PTJE_NEM~data$ddecil)
 
 # Versión ponderada usando svyttest para dos muestras
 svyttest(variable_cuanti ~ variable_cuali, design = survey_design)
@@ -85,6 +88,7 @@ summary(anova)
 
 # comparaciones múltiples
 tukey <- TukeyHSD(anova)
+tukey
 plot(tukey)
 
 # Versión ponderada usando svyglm (ANOVA ponderada)
