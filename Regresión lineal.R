@@ -121,7 +121,7 @@ plot(nueva_data$EDAD[nueva_data$SEXO == "Hombre"], nueva_data$Pred_no_ponderado[
      main = "Modelo No Ponderado", lwd = 2, ylim = range(nueva_data$Pred_no_ponderado))
 lines(nueva_data$EDAD[nueva_data$SEXO == "Mujer"], nueva_data$Pred_no_ponderado[nueva_data$SEXO == "Mujer"], 
       col = "red", lwd = 2)  # Línea para Mujeres
-legend("topleft", legend = c("Hombre", "Mujer"), col = c("blue", "red"), lty = 1, lwd = 2, cex = 0.4)
+legend("topleft", legend = c("Hombre", "Mujer"), col = c("blue", "red"), lty = 1, lwd = 2, cex = 0.6)
 
 # Gráfico para el modelo ponderado (una línea para Hombres y otra para Mujeres)
 plot(nueva_data$EDAD[nueva_data$SEXO == "Hombre"], nueva_data$Pred_ponderado[nueva_data$SEXO == "Hombre"], 
@@ -129,7 +129,7 @@ plot(nueva_data$EDAD[nueva_data$SEXO == "Hombre"], nueva_data$Pred_ponderado[nue
      main = "Modelo Ponderado", lwd = 2, ylim = range(nueva_data$Pred_ponderado))
 lines(nueva_data$EDAD[nueva_data$SEXO == "Mujer"], nueva_data$Pred_ponderado[nueva_data$SEXO == "Mujer"], 
       col = "red", lwd = 2)  # Línea para Mujeres
-legend("topleft", legend = c("Hombre", "Mujer"), col = c("blue", "red"), lty = 1, lwd = 2, cex = 0.4)
+legend("topleft", legend = c("Hombre", "Mujer"), col = c("blue", "red"), lty = 1, lwd = 2, cex = 0.6)
 
 # Restaurar la configuración gráfica original
 par(mfrow = c(1, 1))
@@ -137,6 +137,8 @@ par(mfrow = c(1, 1))
 # EJERCICIO:
 # Ajuste un modelo de regresión lineal incluyendo más variables
 # interprete los coeficientes, el R2 y el ANOVA de la regresión
-# Compare los modelos lineal y cuantil usando screenreg
+# Visualizar los resultados con screenreg
+
+
 
 
