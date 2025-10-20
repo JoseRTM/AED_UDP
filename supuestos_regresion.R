@@ -33,11 +33,11 @@ modelo_1 <- lm(gini_slc ~ educ_expend + gdp, data = data)
 modelo_1_log <- lm(log(gini_slc) ~ educ_expend + gdp, data = data)
 
 # Ver los resultados del modelo
-screenreg(modelo_1, custom.model.names = "Modelo 1", 
-          custom.coef.names = c("Constante", "Gasto en educación", "GDP"))
-screenreg(modelo_1_log, custom.model.names = "Modelo 1", 
-          custom.coef.names = c("Constante", "Gasto en educación", "GDP"))
-
+screenreg(
+  list(modelo_1, modelo_1_log),
+  custom.model.names = c("Modelo 1", "Modelo log"),
+  custom.coef.names = c("Constante", "Gasto en educación", "GDP")
+)
 # SUPUESTOS DE LA REGRESIÓN
 
 # 1. LINEALIDAD
@@ -49,12 +49,14 @@ abline(h = 0, col = "red")  # Línea horizontal en cero
 
 # Corrección: Incluir un término cuadrático
 data$educ_expend2 <- data$educ_expend^2
-model_1_quadratic <- lm(gini_slc ~ educ_expend + educ_expend2 + literacy, data = data)
+model_1_quadratic <- lm(gini_slc ~ educ_expend + educ_expend2 + gdp, data = data)
 screenreg(model_1_quadratic)
 
 # 2. HOMOCEDASTICIDAD
 # Graficar los residuos
-residualPlot(modelo_1)
+par(mfrow = c(2,2))
+plot(modelo_1)
+plot(modelo_1_log)
 
 # Test de Breusch-Pagan para verificar homocedasticidad
 bptest(modelo_1)
@@ -73,8 +75,12 @@ screenreg(models_robust,
 
 # 3. NORMALIDAD DE LOS RESIDUOS
 # Q-Q plot para evaluar la normalidad de los residuos
+par(mfrow = c(1,2))
 qqnorm(modelo_1_log$residuals, main = "Q-Q Plot de los Residuos")
 qqline(modelo_1_log$residuals, col = "red")
+qqnorm(modelo_1$residuals, main = "Q-Q Plot de los Residuos")
+qqline(modelo_1$residuals, col = "red")
+
 
 # 4. AUSENCIA DE MULTICOLINEALIDAD
 # Verificar VIF (Variance Inflation Factor)
